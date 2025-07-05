@@ -89,7 +89,7 @@ class SongBloom_Sampler:
     
         print(incompatible)
         
-        model_light = model_light.eval().cuda().to(dtype=dtype)  
+        model_light = model_light.eval().cpu().to(dtype=dtype)  
         model = cls(
             compression_model = model_light.vae,
             diffusion = model_light.model,

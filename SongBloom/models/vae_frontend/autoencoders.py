@@ -644,7 +644,7 @@ if __name__ == "__main__":
     with torch.no_grad():
         vae_model = create_autoencoder_from_config(config).cuda()
         model_ckpt_path = 'modelzoo/stable_audio_vae/autoencoder.ckpt'
-        vae_model.load_state_dict(torch.load(model_ckpt_path)['state_dict'])
+        vae_model.load_state_dict(torch.load(model_ckpt_path, map_location='cpu')['state_dict'])
         
         
         input_audios, sr = torchaudio.load("music_example/加勒比海盗 主题.wav")

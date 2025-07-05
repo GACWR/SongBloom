@@ -50,7 +50,7 @@ class StableVAE(AbstractVAE):
         with open(vae_cfg) as f:
             config = json.load(f)
         self.vae: AudioAutoencoder = create_autoencoder_from_config(config)
-        self.vae.load_state_dict(torch.load(vae_ckpt)['state_dict'])
+        self.vae.load_state_dict(torch.load(vae_ckpt, map_location='cpu')['state_dict'])
         self.sample_rate = sr
         self.rsp48k = torchaudio.transforms.Resample(sr, self.orig_sample_rate) if sr != self.orig_sample_rate else nn.Identity()
        
